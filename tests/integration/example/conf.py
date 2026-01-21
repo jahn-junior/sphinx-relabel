@@ -1,6 +1,4 @@
-# This file is part of sphinx-ext-template.
-#
-# Copyright 2025 Canonical Ltd.
+# This file is part of sphinx-relabel.
 #
 # This program is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License version 3, as published by the Free
@@ -20,12 +18,11 @@ import sys
 project_dir = pathlib.Path(__file__).parents[1].resolve()
 sys.path.insert(0, str(project_dir.absolute()))
 
-project = "Mockumentation"
+project = "sphinx-relabel tests"
 author = "Tester"
 
 html_title = project
-html_theme = "furo"
 
 extensions = [
-    "hello_ext",
+    "sphinx_relabel",
 ]

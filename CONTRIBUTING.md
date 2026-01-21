@@ -3,35 +3,18 @@
 All contributors should become familiar with this guide. It outlines the expectations
 and practices for participating in the project.
 
-## Review the project expectations
-
-Before you start working on the project, there are three documents for you to digest.
-
-### Ubuntu Code of Conduct
-
-Projects governed by Canonical expect good conduct and excellence from every member. The
-specific principles are laid out in the [Ubuntu Code of
-Conduct](https://ubuntu.com/community/ethos/code-of-conduct).
-
-### Canonical Contributor License Agreement
-
-As a contributor, you retain your copyright and attribution rights, provided you sign
-the [Canonical Contributor Licence Agreement](http://www.ubuntu.com/legal/contributors).
-Before committing any code, review its terms. If you agree and sign it, your code can be
-incorporated into the repository.
-
-### Open source license
+## Review the license
 
 This project is licensed under [GPL-3.0](LICENSE).
 
 ## Report an issue or open a request
 
 If you find a bug or feature gap in the project, look for it in the [project's GitHub
-issues](https://github.com/canonical/sphinx-ext-template/issues) first. If you have
+issues](https://github.com/jahn-junior/sphinx-relabel/issues) first. If you have
 fresh input, add your voice to the issue.
 
 If the bug or feature doesn't have an issue, we invite you to [open
-one](https://github.com/canonical/sphinx-ext-template/issues/new/choose).
+one](https://github.com/jahn-junior/sphinx-relabel/issues/new/choose).
 
 ## Set up for development
 
@@ -40,15 +23,15 @@ systems and is heavily terminal-dependent. Remote testing and building is provid
 GitHub for continuous integration and delivery.
 
 Start by [creating a personal
-fork](https://github.com/canonical/sphinx-ext-template/fork) of the repository on
+fork](https://github.com/jahn-junior/sphinx-relabel/fork) of the repository on
 GitHub.
 
 Next, on your host system, clone your fork and sync it with the upstream repository:
 
 ```bash
-git clone git@github.com:<username>/sphinx-ext-template --recurse-submodules
-cd sphinx-ext-template
-git remote add upstream git@github.com:canonical/sphinx-ext-template
+git clone git@github.com:<username>/sphinx-relabel --recurse-submodules
+cd sphinx-relabel
+git remote add upstream git@github.com:jahn-junior/sphinx-relabel
 git fetch upstream
 ```
 
@@ -57,9 +40,9 @@ If you don't authenticate with SSH, clone with
 instead:
 
 ```bash
-git clone https://github.com/<username>/sphinx-ext-template --recurse-submodules
-cd sphinx-ext-template
-git remote add upstream https://github.com/canonical/sphinx-ext-template
+git clone https://github.com/<username>/sphinx-relabel --recurse-submodules
+cd sphinx-relabel
+git remote add upstream https://github.com/jahn-junior/sphinx-relabel
 git fetch upstream
 ```
 
@@ -168,7 +151,7 @@ changes stick, restage the modified files with `git add -A` and commit again.
 
 All nontrivial code changes should be accompanied by a reasonable set of tests.
 
-sphinx-ext-template's test suite includes both unit and integration tests. If you're not
+The sphinx-relabel test suite includes both unit and integration tests. If you're not
 sure which tests you should add, go with your best judgement – additional tests can be
 added during the review process.
 
@@ -202,7 +185,7 @@ Once your work is committed to your branch, push it to your fork:
 git push -u origin <branch-name>
 ```
 
-Finally, [open a PR](https://github.com/canonical/sphinx-ext-template/compare) for it on
+Finally, [open a PR](https://github.com/jahn-junior/sphinx-relabel/compare) for it on
 GitHub. If your branch has one commit, GitHub will title the PR after it. If your branch
 has more than one commit, name the PR after the most significant. Once open, reviewers
 are assigned automatically to your work.

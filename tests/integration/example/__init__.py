@@ -1,6 +1,4 @@
-# This file is part of sphinx-ext-template.
-#
-# Copyright 2025 Canonical Ltd.
+# This file is part of sphinx-relabel.
 #
 # This program is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License version 3, as published by the Free

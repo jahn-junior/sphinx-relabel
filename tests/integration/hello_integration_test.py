@@ -1,6 +1,4 @@
-# This file is part of sphinx-ext-template.
-#
-# Copyright 2025 Canonical Ltd.
+# This file is part of sphinx-relabel.
 #
 # This program is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License version 3, as published by the Free
@@ -34,7 +32,7 @@ def example_project(request) -> Path:
 
 
 @pytest.mark.slow
-def test_hello_integration(example_project):
+def test_relabel_integration(example_project):
     build_dir = example_project / "_build"
     subprocess.check_call(
         ["sphinx-build", "-b", "html", "-W", example_project, build_dir],
@@ -49,9 +47,3 @@ def test_hello_integration(example_project):
     soup = bs4.BeautifulSoup(index.read_text(), features="lxml")
 
     shutil.rmtree(example_project)  # Delete copied source
-
-    ext_text = soup.find("p")
-    if ext_text:
-        assert getattr(ext_text, "text", None) == "Hello, world!"
-    else:
-        pytest.fail("Directive output not found in document.")

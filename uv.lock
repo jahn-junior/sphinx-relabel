@@ -306,7 +306,7 @@ wheels = [
 ]
 
 [[package]]
-name = "hello-ext"
+name = "sphinx-relabel"
 source = { editable = "." }
 dependencies = [
     { name = "docutils" },

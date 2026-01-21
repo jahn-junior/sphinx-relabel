@@ -1,6 +1,4 @@
-# This file is part of sphinx-ext-template.
-#
-# Copyright 2025 Canonical Ltd.
+# This file is part of sphinx-relabel.
 #
 # This program is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License version 3, as published by the Free
@@ -18,7 +16,6 @@
 
 from sphinx.util.typing import ExtensionMetadata
 from sphinx.application import Sphinx
-from .hello import HelloDirective
 
 try:
     from ._version import __version__
@@ -26,7 +23,7 @@ except ImportError:  # pragma: no cover
     from importlib.metadata import version, PackageNotFoundError
 
     try:
-        __version__ = version("hello_ext")
+        __version__ = version("sphinx_relabel")
     except PackageNotFoundError:
         __version__ = "dev"
 
@@ -36,7 +33,6 @@ def setup(app: Sphinx) -> ExtensionMetadata:
 
     :returns: ExtensionMetadata
     """
-    app.add_directive("hello", HelloDirective)
 
     return {
         "version": __version__,
