@@ -1,6 +1,6 @@
 [project]
 name = "sphinx-relabel"
-description = "An example extension."
+description = "Redirect labels that have been renamed or removed."
 dynamic = ["version", "readme"]
 requires-python = ">=3.10"
 dependencies = [

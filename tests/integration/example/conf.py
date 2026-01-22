@@ -26,3 +26,7 @@ html_title = project
 extensions = [
     "sphinx_relabel",
 ]
+
+label_redirects = {
+    "bad-label": "good-label",
+}

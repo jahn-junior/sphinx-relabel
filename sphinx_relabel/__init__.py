@@ -12,10 +12,11 @@
 # You should have received a copy of the GNU General Public License along with
 # this program.  If not, see <http://www.gnu.org/licenses/>.
 
-"""Adds the directive to Sphinx."""
+"""Adds the relabel function to Sphinx."""
 
 from sphinx.util.typing import ExtensionMetadata
 from sphinx.application import Sphinx
+from sphinx_relabel.callback import relabel
 
 try:
     from ._version import __version__
@@ -29,10 +30,19 @@ except ImportError:  # pragma: no cover
 
 
 def setup(app: Sphinx) -> ExtensionMetadata:
-    """Add the extension's directive to Sphinx.
+    """Add the config value and callback function to Sphinx.
 
     :returns: ExtensionMetadata
     """
+    app.add_config_value(
+        "label_redirects",
+        default=None,
+        rebuild="html",
+        types=[str, dict],
+        description="A file or dict containing the label redirects.",
+    )
+
+    app.connect("doctree-read", relabel)  # pyright: ignore [reportUnknownMemberType]
 
     return {
         "version": __version__,

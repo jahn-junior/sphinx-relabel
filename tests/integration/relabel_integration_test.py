@@ -47,3 +47,5 @@ def test_relabel_integration(example_project):
     soup = bs4.BeautifulSoup(index.read_text(), features="lxml")
 
     shutil.rmtree(example_project)  # Delete copied source
+
+    pytest.fail("Incomplete test.")
