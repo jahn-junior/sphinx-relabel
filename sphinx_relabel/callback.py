@@ -12,8 +12,10 @@
 # You should have received a copy of the GNU General Public License along with
 # this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from sphinx.application import Sphinx
+import json
+
 from docutils.nodes import document
+from sphinx.application import Sphinx
 
 
 def relabel(app: Sphinx, doctree: document) -> None:
@@ -23,13 +25,13 @@ def relabel(app: Sphinx, doctree: document) -> None:
     label_mapping: dict[str, str] = {}
     if isinstance(app.config.label_redirects, str):
         # open file and read as dict
-        label_mapping = {}
-    elif not all(
+        with open(app.confdir / app.config.label_redirects) as redirects_file:
+            label_mapping = json.load(redirects_file)
+    elif not all( # if there are non-string entries
         isinstance(k, str) and isinstance(v, str)
         for k, v in app.config.label_redirects.items()
     ):
-        # error out
-        print("why i oughtta")
+        raise TypeError("All source and destination labels must be strings.")
     else:
         label_mapping = app.config.label_redirects
 

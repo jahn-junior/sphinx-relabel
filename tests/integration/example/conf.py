@@ -27,6 +27,8 @@ extensions = [
     "sphinx_relabel",
 ]
 
-label_redirects = {
-    "bad-label": "good-label",
-}
+label_redirects = "labels.txt"
+
+# label_redirects = {
+#     "bad-label": "good-label",
+# }
