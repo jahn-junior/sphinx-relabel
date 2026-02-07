@@ -1,6 +1,4 @@
-![reLabel logo](assets/logo.png)
-
-# sphinx-relabel
+<img src="assets/logo.png" alt="reLabel logo" style="height: 128px; display: block">
 
 reLabel is a tool for redirecting labels in your Sphinx documentation.
 
