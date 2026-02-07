@@ -1,5 +1,7 @@
 <img src="assets/logo.png" alt="reLabel logo" style="height: 128px; display: block">
 
+# sphinx-relabel
+
 reLabel is a tool for redirecting labels in your Sphinx documentation.
 
 In documentation, we go to great lengths to redirect pages as they're moved, but we
