@@ -1,28 +1,47 @@
+![reLabel logo](assets/logo.png)
+
 # sphinx-relabel
 
-<!-- Answer elevator-pitch questions about the extension – What is it? What does it do? What
-essential problem does it solve? -->
+reLabel is a tool for redirecting labels in your Sphinx documentation.
 
-sphinx-relabel adds a Sphinx directive that generates a custom greeting.
+In documentation, we go to great lengths to redirect pages as they're moved, but we
+don't show the same care with Sphinx labels. If external documentation links to your
+project with Intersphinx, then removing labels will break references to them.
 
-## Basic usage
+With reLabel, you can redirect removed labels to any existing label in your docs,
+preventing any surprise Intersphinx breakages.
 
+## Usage
 
+Map removed labels to existing labels with the `label_redirects` option in your
+`conf.py` file:
+
+```python
+label_redirects = {
+    "old-label": "new-label"
+}
+```
+
+Alternatively, list the label redirects in a separate file, formatted as valid JSON:
+
+```python
+label_redirects = "labels.json"
+```
 
 ## Project setup
 
-sphinx-relabel is published on PyPI and can be installed with:
+reLabel is published on PyPI and can be installed with:
 
 ```bash
 pip install sphinx-relabel
 ```
 
-After adding sphinx-relabel to your Python project, update your Sphinx's conf.py file to
-include sphinx-relabel as one of its extensions:
+After adding reLabel to your Python project, update your Sphinx's conf.py file to
+include reLabel as one of its extensions:
 
 ```python
 extensions = [
-    "sphinx-relabel"
+    "sphinx_relabel"
 ]
 ```
 
@@ -31,10 +50,9 @@ extensions = [
 You can report any issues or bugs on the project's [GitHub
 repository](https://github.com/jahn-junior/sphinx-relabel).
 
-If you're interested in contributing to sphinx-relabel, start
-with the [contribution guide](CONTRIBUTING.md).
-
+If you're interested in contributing to reLabel, start with the [contribution
+guide](CONTRIBUTING.md).
 
 ## License and copyright
 
-sphinx-relabel is released under the [GPL-3.0 license](LICENSE).
+reLabel is released under the [GPL-3.0 license](LICENSE).

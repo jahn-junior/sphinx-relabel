@@ -27,7 +27,7 @@ def relabel(app: Sphinx, doctree: document) -> None:
         # open file and read as dict
         with open(app.confdir / app.config.label_redirects) as redirects_file:
             label_mapping = json.load(redirects_file)
-    elif not all( # if there are non-string entries
+    elif not all(  # if there are non-string entries
         isinstance(k, str) and isinstance(v, str)
         for k, v in app.config.label_redirects.items()
     ):
