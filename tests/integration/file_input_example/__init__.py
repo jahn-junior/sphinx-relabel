@@ -11,24 +11,3 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # this program.  If not, see <http://www.gnu.org/licenses/>.
-
-import pathlib
-import sys
-
-project_dir = pathlib.Path(__file__).parents[1].resolve()
-sys.path.insert(0, str(project_dir.absolute()))
-
-project = "sphinx-relabel tests"
-author = "Tester"
-
-html_title = project
-
-extensions = [
-    "sphinx_relabel",
-]
-
-label_redirects = "labels.txt"
-
-# label_redirects = {
-#     "bad-label": "good-label",
-# }

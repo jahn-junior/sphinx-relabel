@@ -12,20 +12,25 @@
 # You should have received a copy of the GNU General Public License along with
 # this program.  If not, see <http://www.gnu.org/licenses/>.
 
+"""Contains the core callback function of reLabel."""
+
 import json
+from pathlib import Path
 
 from docutils.nodes import document
 from sphinx.application import Sphinx
+from sphinx.errors import ConfigError
 
 
-def relabel(app: Sphinx, doctree: document) -> None:
+def relabel(app: Sphinx, doctree: document) -> None:  # noqa: ARG001
+    """Process and create redirects after the doctree is read."""
     if not app.config.label_redirects:
         return
 
     label_mapping: dict[str, str] = {}
     if isinstance(app.config.label_redirects, str):
         # open file and read as dict
-        with open(app.confdir / app.config.label_redirects) as redirects_file:
+        with Path.open(app.confdir / app.config.label_redirects) as redirects_file:
             label_mapping = json.load(redirects_file)
     elif not all(  # if there are non-string entries
         isinstance(k, str) and isinstance(v, str)
@@ -36,6 +41,11 @@ def relabel(app: Sphinx, doctree: document) -> None:
         label_mapping = app.config.label_redirects
 
     for old_label in list(label_mapping.keys()):
+        if label_mapping[old_label] not in app.env.domaindata["std"]["labels"]:
+            raise ConfigError(
+                f"Label '{label_mapping[old_label]}' not found in the standard domain."
+            )
+
         target_doc, anchor, link_text = app.env.domaindata["std"]["labels"][
             label_mapping[old_label]
         ]
