@@ -17,7 +17,6 @@ import subprocess
 from pathlib import Path
 from typing import cast
 
-import bs4
 import pytest
 from sphinx.util.inventory import InventoryFile
 

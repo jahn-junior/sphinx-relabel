@@ -18,7 +18,6 @@ types = [
     "types-setuptools",
 ]
 dev = [
-    "bs4>=0.0.2",
     "lxml>=5.0",
     "pytest>=8.4.0",
     "pytest-cov~=7.0",
