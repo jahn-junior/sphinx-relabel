@@ -68,8 +68,8 @@ def test_relabel_dict_input(dict_input_example):
 
     target_doc, _, anchor, link_text = inv["std:label"]["old-label"]
     assert target_doc == "sphinx-relabel tests"
-    assert anchor == "index.html#new-label"
-    assert link_text == "Target section"
+    assert anchor == "another.html#new-label"
+    assert link_text == "another file"
 
 
 @pytest.mark.slow
@@ -97,5 +97,5 @@ def test_relabel_file_input(file_input_example):
 
     target_doc, _, anchor, link_text = inv["std:label"]["old-label"]
     assert target_doc == "sphinx-relabel tests"
-    assert anchor == "index.html#new-label"
-    assert link_text == "Target section"
+    assert anchor == "another.html#new-label"
+    assert link_text == "another file"

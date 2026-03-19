@@ -68,14 +68,18 @@ def handle_redirected_labels(
 
     old_target = cast(str, node.get("reftarget"))
     if old_target in redirects:
+        target_doc, anchor, link_text = app.env.domaindata["std"]["labels"][
+            app.config.label_redirects[old_target]
+        ]
+
         node["reftarget"] = redirects[old_target]
         return make_refnode(
             app.builder,
             env.docname,
-            redirects[old_target],
-            contnode.astext(),
+            target_doc,
+            anchor,
             contnode,
-            redirects[old_target],
+            link_text,
         )
 
     return None
