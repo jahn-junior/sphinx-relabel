@@ -147,3 +147,6 @@ dmypy.json
 
 # Visual Studio Code
 .vscode/
+
+# Self-hosted runner
+actions-runner/
