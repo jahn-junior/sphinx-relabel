@@ -28,5 +28,5 @@ extensions = [
 ]
 
 label_redirects = {
-    "bad-label": "good-label",
+    "old-label": "new-label",
 }

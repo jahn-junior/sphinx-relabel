@@ -16,38 +16,41 @@
 
 import json
 from pathlib import Path
+from typing import cast
 
-from docutils.nodes import document
+from docutils import nodes
 from sphinx.application import Sphinx
+from sphinx.environment import BuildEnvironment
 from sphinx.errors import ConfigError
+from sphinx.util.nodes import make_refnode
 
 
-def relabel(app: Sphinx, doctree: document) -> None:  # noqa: ARG001
+def relabel(app: Sphinx, doctree: nodes.document) -> None:  # noqa: ARG001
     """Process and create redirects after the doctree is read."""
     if not app.config.label_redirects:
         return
 
-    label_mapping: dict[str, str] = {}
     if isinstance(app.config.label_redirects, str):
         # open file and read as dict
         with Path.open(app.confdir / app.config.label_redirects) as redirects_file:
-            label_mapping = json.load(redirects_file)
+            app.config.label_redirects = json.load(redirects_file)
     elif not all(  # if there are non-string entries
         isinstance(k, str) and isinstance(v, str)
         for k, v in app.config.label_redirects.items()
     ):
         raise TypeError("All source and destination labels must be strings.")
-    else:
-        label_mapping = app.config.label_redirects
 
-    for old_label in list(label_mapping.keys()):
-        if label_mapping[old_label] not in app.env.domaindata["std"]["labels"]:
+    for old_label in app.config.label_redirects:
+        if (
+            app.config.label_redirects[old_label]
+            not in app.env.domaindata["std"]["labels"]
+        ):
             raise ConfigError(
-                f"Label '{label_mapping[old_label]}' not found in the standard domain."
+                f"Label '{app.config.label_redirects[old_label]}' not found in the standard domain."
             )
 
         target_doc, anchor, link_text = app.env.domaindata["std"]["labels"][
-            label_mapping[old_label]
+            app.config.label_redirects[old_label]
         ]
 
         app.env.domaindata["std"]["labels"][old_label] = (
@@ -55,3 +58,24 @@ def relabel(app: Sphinx, doctree: document) -> None:  # noqa: ARG001
             anchor,
             link_text,
         )
+
+
+def handle_redirected_labels(
+    app: Sphinx, env: BuildEnvironment, node: nodes.reference, contnode: nodes.Node
+) -> nodes.reference | None:
+    """Process `pending_xref` nodes that point to redirected labels in local docs."""
+    redirects = getattr(app.config, "label_redirects", {})
+
+    old_target = cast(str, node.get("reftarget"))
+    if old_target in redirects:
+        node["reftarget"] = redirects[old_target]
+        return make_refnode(
+            app.builder,
+            env.docname,
+            redirects[old_target],
+            contnode.astext(),
+            contnode,
+            redirects[old_target],
+        )
+
+    return None

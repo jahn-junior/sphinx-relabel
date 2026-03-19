@@ -16,7 +16,7 @@
 
 from sphinx.util.typing import ExtensionMetadata
 from sphinx.application import Sphinx
-from sphinx_relabel.callback import relabel
+from sphinx_relabel.callback import relabel, handle_redirected_labels
 
 try:
     from ._version import __version__
@@ -43,6 +43,7 @@ def setup(app: Sphinx) -> ExtensionMetadata:
     )
 
     app.connect("doctree-read", relabel)  # pyright: ignore [reportUnknownMemberType]
+    app.connect("missing-reference", handle_redirected_labels)
 
     return {
         "version": __version__,

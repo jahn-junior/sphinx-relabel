@@ -66,9 +66,9 @@ def test_relabel_dict_input(dict_input_example):
             InventoryFile.load(f, inv_path, joinfunc=lambda a, b: b),
         )
 
-    target_doc, _, anchor, link_text = inv["std:label"]["bad-label"]
+    target_doc, _, anchor, link_text = inv["std:label"]["old-label"]
     assert target_doc == "sphinx-relabel tests"
-    assert anchor == "index.html#good-label"
+    assert anchor == "index.html#new-label"
     assert link_text == "Target section"
 
 
@@ -95,7 +95,7 @@ def test_relabel_file_input(file_input_example):
             InventoryFile.load(f, inv_path, joinfunc=lambda a, b: b),
         )
 
-    target_doc, _, anchor, link_text = inv["std:label"]["bad-label"]
+    target_doc, _, anchor, link_text = inv["std:label"]["old-label"]
     assert target_doc == "sphinx-relabel tests"
-    assert anchor == "index.html#good-label"
+    assert anchor == "index.html#new-label"
     assert link_text == "Target section"
